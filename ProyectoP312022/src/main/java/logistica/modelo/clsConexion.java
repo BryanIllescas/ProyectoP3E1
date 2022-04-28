@@ -1,4 +1,4 @@
-package prototipos.modelo;
+package logistica.modelo;
 
 import java.sql.*;
 
