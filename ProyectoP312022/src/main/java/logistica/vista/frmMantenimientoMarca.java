@@ -5,9 +5,6 @@
  */
 package logistica.vista;
 
-import compras.vista.*;
-import seguridad.vista.*;
-import compras.vista.*;
 import logistica.modelo.daoMarca;
 import logistica.controlador.clsMarca;
 
