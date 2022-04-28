@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prototipos.modelo;
+package logistica.modelo;
 
 import prototipos.controlador.clsBodegas;
 import java.sql.*;
@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class daoBodegas {
 
-    private static final String SQL_SELECT = "SELECT bodid, prodid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas";
-    private static final String SQL_INSERT = "INSERT INTO tbl_bodegas(bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_bodegas SET bodnombre=?,  bodubicacion = ?, bidingresos = ?, bodegresos = ?, bodstatus = ? WHERE bodid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_bod WHERE bodid=?";
-    private static final String SQL_QUERY = "SELECT bodid, prodid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodid=?";
-    private static final String SQL_QUERYN = "SELECT bodid, prodid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodnombre=?";    
+    private static final String SQL_SELECT = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas";
+    private static final String SQL_INSERT = "INSERT INTO tbl_bodegas(bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus) VALUES(?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_bodegas SET bodnombre = ?,  bodubicacion = ?, bidingresos = ?, bodegresos = ?, bodstatus = ? WHERE bodid = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_bodegas WHERE bodid=?";
+    private static final String SQL_QUERY = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodid=?";
+    private static final String SQL_QUERYN = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodnombre=?";    
 
     public List<clsBodegas> select() {
         Connection conn = null;
@@ -42,14 +42,14 @@ public class daoBodegas {
                 String egresos = rs.getString("bodegresos");
                 String estatus = rs.getString("bodstatus");
 
-                bodegas = new clsBodegas();
+                bodegas = (List<clsBodegas>) new clsBodegas();
                 bodegas.setBodid(id);
                 bodegas.setBodnombre(nombre);
                 bodegas.setBodubicacion(direccion);
                 bodegas.setBodingresos(ingresos);
                 bodegas.setBodegresos(egresos);
                 bodegas.setBodstatus(estatus);
-                bodegas.add(bodegas);
+                bodegas.add((clsBodegas) bodegas);
             }
 
         } catch (SQLException ex) {
@@ -217,6 +217,18 @@ public clsBodegas queryn(clsBodegas bodegas) {
 
         //return personas;  // Si se utiliza un ArrayList
         return bodegas;
+    }
+
+    public logistica.controlador.clsBodegas query(logistica.controlador.clsBodegas bodegasAConsultar) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void delete(logistica.controlador.clsBodegas bodegasAEliminar) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void insert(logistica.controlador.clsBodegas bodegasAInsertar) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
