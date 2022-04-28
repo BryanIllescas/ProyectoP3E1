@@ -25,7 +25,7 @@ public class frmBodegas extends javax.swing.JInternalFrame {
         modelo.addColumn("Estatus");
        
         daoBodegas bodegasDAO = new daoBodegas();
-        List<prototipos.controlador.clsBodegas> bodegas = bodegasDAO.select();
+        List<clsBodegas> bodegas = bodegasDAO.select();
         tablaBodegas.setModel(modelo);
         String[] dato = new String[8];
         for (int i = 0; i < bodegas.size(); i++) {
@@ -35,7 +35,6 @@ public class frmBodegas extends javax.swing.JInternalFrame {
             dato[3] = bodegas.get(i).getBodingresos();
             dato[4] = bodegas.get(i).getBodegresos();
             dato[5] = bodegas.get(i).getBodstatus();
-            //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
