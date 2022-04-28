@@ -5,9 +5,6 @@
  */
 package logistica.modelo;
 
-import compras.modelo.*;
-import compras.modelo.*;
-import seguridad.modelo.*;
 
 import logistica.controlador.clsMarca;
 
@@ -21,11 +18,11 @@ import java.util.List;
  */
 public class daoMarca {
 
-    private static final String SQL_SELECT = "SELECT marid, marnombre,marlinea,marestado FROM tbl_marca";
-    private static final String SQL_INSERT = "INSERT INTO tbl_marca ( marnombre, marlinea, marestado) VALUES (?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_marca SET marnombre = ?, marlinea = ?, marestado = ? WHERE tbl_marca.marid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_marca WHERE tbl_marca.marid = ?";
-    private static final String SQL_QUERY = "SELECT marid, marnombre,marlinea,marestado FROM tbl_marca WHERE marid=?";
+    private static final String SQL_SELECT = "SELECT marid, marnombre,marlinea,marestado FROM tbl_marcas";
+    private static final String SQL_INSERT = "INSERT INTO tbl_marcas ( marnombre, marlinea, marestado) VALUES (?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_marcas SET marnombre = ?, marlinea = ?, marestado = ? WHERE tbl_marca.marid = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_marcas WHERE tbl_marca.marid = ?";
+    private static final String SQL_QUERY = "SELECT marid, marnombre,marlinea,marestado FROM tbl_marcas WHERE marid=?";
 
     public List<clsMarca> select() {
         Connection conn = null;

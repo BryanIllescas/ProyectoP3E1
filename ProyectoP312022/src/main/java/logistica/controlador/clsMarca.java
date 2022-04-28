@@ -1,7 +1,5 @@
 package logistica.controlador;
 
-import compras.controlador.*;
-
 public class clsMarca {
  private int marid;
  private String marnombre,marlinea,marestado;
@@ -50,7 +48,7 @@ public class clsMarca {
 
     @Override
     public String toString() {
-        return "clsMarca{" + "marid=" + marid + ", marnombre=" + marnombre + ", marlinea=" + marlinea + ", marestado=" + marestado + '}';
+        return "tbl_marcas{" + "marid=" + marid + ", marnombre=" + marnombre + ", marlinea=" + marlinea + ", marestado=" + marestado + '}';
     }
  
  
