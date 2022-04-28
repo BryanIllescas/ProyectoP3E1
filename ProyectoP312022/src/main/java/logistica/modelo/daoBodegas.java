@@ -5,7 +5,9 @@
  */
 package logistica.modelo;
 
-import prototipos.controlador.clsBodegas;
+
+import logistica.controlador.clsBodegas;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,40 +18,43 @@ import java.util.List;
  */
 public class daoBodegas {
 
-    private static final String SQL_SELECT = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas";
-    private static final String SQL_INSERT = "INSERT INTO tbl_bodegas(bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus) VALUES(?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_bodegas SET bodnombre = ?,  bodubicacion = ?, bidingresos = ?, bodegresos = ?, bodstatus = ? WHERE bodid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_bodegas WHERE bodid=?";
-    private static final String SQL_QUERY = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodid=?";
-    private static final String SQL_QUERYN = "SELECT bodid, proid, bodnombre, bodubicacion, bidingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodnombre=?";    
+    private static final String SQL_SELECT = "SELECT bodid, proid, bodnombre, bodubicacion, bodingresos, bodegresos, bodstatus FROM tbl_bodegas";
+    private static final String SQL_INSERT = "INSERT INTO tbl_bodegas ( bodnombre, bodubicacion, bodingresos, bodegresos, bodstatus) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_bodegas SET bodnombre = ?, bodubicacion = ?, bodingresos = ?, bodegresos = ?, bodstatus = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_bodegas WHERE tbl_bodegas.bodid = ?";
+    private static final String SQL_QUERY = "SELECT bodid, proid, bodnombre, bodubicacion, bodingresos, bodegresos, bodstatus FROM tbl_bodegas WHERE bodid=?";
 
     public List<clsBodegas> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsBodegas bodegas = null;
-        List<clsBodegas> bodegas = new ArrayList<clsBodegas>();
-        
+        clsBodegas producto = null;
+        List<clsBodegas> product = new ArrayList<clsBodegas>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("bodid");
-                String nombre = rs.getString("bodnombre");
-                String direccion = rs.getString("bodubicacion");
-                String ingresos = rs.getString("bodingresos");
-                String egresos = rs.getString("bodegresos");
-                String estatus = rs.getString("bodstatus");
+                int bodid = rs.getInt("bodid");
+                int proid = rs.getInt("proid");
+                String bodnombre = rs.getString("bodnombre");
+                String bodubicacion = rs.getString("bodubicacion");
+                String bodingresos = rs.getString("bodingresos");
+                String bodegresos = rs.getString("bodegresos");
+                String bodstatus = rs.getString("bodstatus");
+                
 
-                bodegas = (List<clsBodegas>) new clsBodegas();
-                bodegas.setBodid(id);
-                bodegas.setBodnombre(nombre);
-                bodegas.setBodubicacion(direccion);
-                bodegas.setBodingresos(ingresos);
-                bodegas.setBodegresos(egresos);
-                bodegas.setBodstatus(estatus);
-                bodegas.add((clsBodegas) bodegas);
+                producto = new clsBodegas();
+                producto.setBodid(bodid);
+                producto.setproid(proid);
+                producto.setBodnombre(bodnombre);
+                producto.setBodubicacion(bodubicacion);
+                producto.setBodingresos(bodingresos);
+                producto.setBodegresos(bodegresos);
+                producto.setBodstatus(bodstatus);
+                
+
+                product.add(producto);
             }
 
         } catch (SQLException ex) {
@@ -60,21 +65,23 @@ public class daoBodegas {
             clsConexion.close(conn);
         }
 
-        return bodegas;
+        return product;
     }
 
-    public int insert(clsBodegas bodegas) {
+   public int insert(clsBodegas producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, bodegas.getBodnombre());
-            stmt.setString(2, bodegas.getBodubicacion());
-            stmt.setString(3, bodegas.getBodingresos());
-            stmt.setString(4, bodegas.getBodegresos());
-            stmt.setString(5, bodegas.getBodstatus());            
+            stmt.setString(1, producto.getBodnombre());
+            stmt.setString(2, producto.getBodubicacion());
+            stmt.setString(3, producto.getBodingresos());
+            stmt.setString(4, producto.getBodegresos());
+            stmt.setString(5, producto.getBodstatus());
+            stmt.setInt(6, producto.getBodid());
+            stmt.setInt(7, producto.getProid());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -89,19 +96,23 @@ public class daoBodegas {
         return rows;
     }
 
-    public int update(clsBodegas bodegas) {
-        Connection conn = null;
+
+    public int update(clsBodegas producto) {
+       Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = clsConexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, bodegas.getBodnombre());
-            stmt.setString(2, bodegas.getBodubicacion());
-            stmt.setString(3, bodegas.getBodingresos());
-            stmt.setString(4, bodegas.getBodegresos());
-            stmt.setString(5, bodegas.getBodstatus());
+            stmt.setString(1, producto.getBodnombre());
+            stmt.setString(2, producto.getBodubicacion());
+            stmt.setString(3, producto.getBodingresos());
+            stmt.setString(4, producto.getBodegresos());
+            stmt.setString(5, producto.getBodstatus());
+            stmt.setInt(6, producto.getBodid());
+            stmt.setInt(7, producto.getProid());
+            
 
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
@@ -116,7 +127,7 @@ public class daoBodegas {
         return rows;
     }
 
-    public int delete(clsBodegas bodegas) {
+    public int delete(clsBodegas producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -125,7 +136,7 @@ public class daoBodegas {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, bodegas.getBodid());
+            stmt.setInt(1, producto.getBodid());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -138,8 +149,7 @@ public class daoBodegas {
         return rows;
     }
 
-    public clsBodegas query(clsBodegas bodegas) 
-    {
+    public clsBodegas query(clsBodegas producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -147,64 +157,28 @@ public class daoBodegas {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, bodegas.getBodid());
+            stmt.setInt(1, producto.getBodid());
+             
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("bodid");
-                String nombre = rs.getString("bodnombre");
-                String direccion = rs.getString("bodubicacion");
-                String ingresos = rs.getString("bodingresos");
-                String egresos = rs.getString("bodegresos");
-                String estatus = rs.getString("bodstatus");
+                
+                int bodid = rs.getInt("bodid");
+                int proid = rs.getInt("proid");
+                String bodnombre = rs.getString("Bodnombre");
+                String bodubicacion= rs.getString("Bodubicacion");
+                String bodingresos= rs.getString("Bodingresos");
+                String bodegresos= rs.getString("Bodegresos");
+                String bodstatus= rs.getString("Bodstatus");
 
-                bodegas = new clsBodegas();
-                bodegas.setBodid(id);
-                bodegas.setBodnombre(nombre);
-                bodegas.setBodubicacion(direccion);
-                bodegas.setBodingresos(ingresos);
-                bodegas.setBodegresos(egresos);
-                bodegas.setBodstatus(estatus);
-                bodegas.add(bodegas);
-            }
-            
-            //System.out.println("Registros buscado:" + persona);
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            clsConexion.close(rs);
-            clsConexion.close(stmt);
-            clsConexion.close(conn);
-        }
-
-        //return personas;  // Si se utiliza un ArrayList
-        return bodegas;
-    }
-public clsBodegas queryn(clsBodegas bodegas) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            conn = clsConexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_QUERY);
-            stmt = conn.prepareStatement(SQL_QUERYN);
-            stmt.setString(1, bodegas.getBodnombre());
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("bodid");
-                String nombre = rs.getString("bodnombre");
-                String direccion = rs.getString("bodubicacion");
-                String ingresos = rs.getString("bodingresos");
-                String egresos = rs.getString("bodegresos");
-                String estatus = rs.getString("bodstatus");
-
-                bodegas = new clsBodegas();
-                bodegas.setBodid(id);
-                bodegas.setBodnombre(nombre);
-                bodegas.setBodubicacion(direccion);
-                bodegas.setBodingresos(ingresos);
-                bodegas.setBodegresos(egresos);
-                bodegas.setBodstatus(estatus);
-                bodegas.add(bodegas);
+                producto = new clsBodegas();
+              
+                producto.setBodid(bodid);
+                producto.setproid(proid);
+                producto.setBodnombre(bodnombre);
+                producto.setBodubicacion(bodubicacion);
+                producto.setBodingresos(bodingresos);
+                producto.setBodegresos(bodegresos);
+                producto.setBodstatus(bodstatus);
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -216,19 +190,10 @@ public clsBodegas queryn(clsBodegas bodegas) {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return bodegas;
+        return producto;
     }
 
-    public logistica.controlador.clsBodegas query(logistica.controlador.clsBodegas bodegasAConsultar) {
+    public void update(prototipos.controlador.clsBodegas bodegasAActualizar) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    public void delete(logistica.controlador.clsBodegas bodegasAEliminar) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void insert(logistica.controlador.clsBodegas bodegasAInsertar) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
