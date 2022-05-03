@@ -15,7 +15,7 @@ import java.io.File;
  *
  * @author visitante
  */
-public class frmBodegas extends javax.swing.JInternalFrame {
+public class frmMantenimientoBodegas extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -51,7 +51,7 @@ public class frmBodegas extends javax.swing.JInternalFrame {
         txtEstatus.setText(bodegasAConsultar.getBodstatus());
     }
 
-    public frmBodegas() {
+    public frmMantenimientoBodegas() {
         initComponents();
         llenadoDeTablas();
     }
