@@ -11,7 +11,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import logistica.controlador.clsLineas;
-
+import seguridad.modelo.clsConexion;
+import seguridad.vista.mdiGeneral;
 /**
  *
  * @author visitante
@@ -28,7 +29,7 @@ public class daoLineas {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsLin producto = null;
+        clsLineas producto = null;
         ArrayList<clsLineas> product = new ArrayList<clsLineas>();
         try {
             conn = clsConexion.getConnection();
@@ -132,7 +133,7 @@ public class daoLineas {
         return rows;
     }
 
-    public clsLinea query(clsLinea producto) {
+    public clsLineas query(clsLineas producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -148,7 +149,7 @@ public class daoLineas {
                 String linnombre = rs.getString("linnombre");
                String linstatus= rs.getString("linstatus");
 
-                producto = new clsLinea();
+                producto = new clsLineas();
               
                 producto.setLinnombre(linnombre);
                 producto.setLinstatus(linstatus);

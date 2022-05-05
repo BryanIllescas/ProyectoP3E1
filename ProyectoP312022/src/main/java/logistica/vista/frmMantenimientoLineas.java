@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.ArrayList;
-import logistica.modelo.clsLineas;
 
 /**
  *
