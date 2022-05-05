@@ -7,7 +7,7 @@ package logistica.modelo;
 
 
 import logistica.controlador.clsProductos;
-
+import seguridad.modelo.clsConexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
