@@ -48,6 +48,6 @@ public class clsLineas {
 
     @Override
     public String toString() {
-        return "tbl_lineas {" + "linid=" + linid +", linnombre=" + linnombre + ", linstatus=" + linstatus + '}';
+        return "tbl_lineas{" + "linid=" + linid ", marid=" + marid + ", linnombre=" + linnombre + ", linstatus=" + linstatus + '}';
     }
  }

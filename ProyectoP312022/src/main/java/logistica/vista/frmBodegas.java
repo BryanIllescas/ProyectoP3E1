@@ -10,13 +10,12 @@ import logistica.controlador.clsBodegas;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
-import seguridad.vista.mdiGeneral;
 
 /**
  *
  * @author visitante
  */
-public class frmMantenimientoBodegas extends javax.swing.JInternalFrame {
+public class frmBodegas extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -52,7 +51,7 @@ public class frmMantenimientoBodegas extends javax.swing.JInternalFrame {
         txtEstatus.setText(bodegasAConsultar.getBodstatus());
     }
 
-    public frmMantenimientoBodegas() {
+    public frmBodegas() {
         initComponents();
         llenadoDeTablas();
     }

@@ -15,11 +15,11 @@ public class clsProductos {
     public clsProductos(int proid) {
         this.proid = proid;
     }
-
+    
     public clsProductos(String pronombre) {
         this.pronombre = pronombre;
     }
-
+    
     public clsProductos(int proid, int marid, int linid, String pronombre, int procantidad, double proprecio, String prostatus) {
         this.proid = proid;
         this.marid = marid;
@@ -29,12 +29,12 @@ public class clsProductos {
         this.proprecio = proprecio;
         this.prostatus = prostatus;
     }
-
+    
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     public int getProid() {
         return proid;
     }
@@ -42,7 +42,7 @@ public class clsProductos {
     public void setProid(int proid) {
         this.proid = proid;
     }
-
+    
     public int getMarid() {
         return marid;
     }
@@ -73,7 +73,7 @@ public class clsProductos {
     public void setProcantidad(int procantidad) {
         this.procantidad = procantidad;
     }
-
+    
     public double getProprecio() {
         return proprecio;
     }
@@ -81,7 +81,7 @@ public class clsProductos {
     public void setProprecio(double proprecio) {
         this.proprecio = proprecio;
     }
-
+    
     public String getProstatus() {
         return prostatus;
     }
