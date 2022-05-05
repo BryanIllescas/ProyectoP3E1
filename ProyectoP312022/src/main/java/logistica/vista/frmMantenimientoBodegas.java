@@ -10,6 +10,7 @@ import logistica.controlador.clsBodegas;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
+import seguridad.vista.mdiGeneral;
 
 /**
  *

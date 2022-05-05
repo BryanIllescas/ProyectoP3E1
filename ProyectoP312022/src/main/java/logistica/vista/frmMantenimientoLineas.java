@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.util.ArrayList;
-import logistica.modelo.clsLineas;
+import seguridad.vista.mdiGeneral;
 
 /**
  *
@@ -33,10 +33,9 @@ public class frmMantenimientoLineas extends javax.swing.JInternalFrame {
         String[] dato = new String[4];
         for (int i = 0; i < producto.size(); i++) {
             dato[0] = Integer.toString(producto.get(i).getMarid());  
-            dato[0] = Integer.toString(producto.get(i).getLinid());     
-            dato[1] = producto.get(i).getLinnombre();
+            dato[1] = Integer.toString(producto.get(i).getLinid());     
+            dato[2] = producto.get(i).getLinnombre();
             dato[3] = producto.get(i).getLinstatus();
-            //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
@@ -216,7 +215,8 @@ public class frmMantenimientoLineas extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         daoLineas productoDAO = new daoLineas();
         clsLineas productoAInsertar = new clsLineas();
-        
+        productoAInsertar.setMarid(Integer.parseInt(txtbuscado.getText()));
+        productoAInsertar.setLinid(Integer.parseInt(txtbuscado.getText()));
         productoAInsertar.setLinnombre(txtNombre.getText());
         productoAInsertar.setLinstatus(txtStatus.getText());
         productoDAO.insert(productoAInsertar);
