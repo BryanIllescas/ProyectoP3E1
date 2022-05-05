@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import logistica.controlador.clsLineas;
 import seguridad.modelo.clsConexion;
-import seguridad.vista.mdiGeneral;
+
 /**
  *
  * @author visitante
