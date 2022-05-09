@@ -11,8 +11,7 @@ import seguridad.modelo.clsConexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import seguridad.modelo.clsConexion;
-import seguridad.vista.mdiGeneral;
+
 /**
  *
  * @author visitante
