@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import logistica.controlador.clsProductos;
 import logistica.modelo.daoProductos;
-import seguridad.vista.mdiGeneral;
 
 /**
  *

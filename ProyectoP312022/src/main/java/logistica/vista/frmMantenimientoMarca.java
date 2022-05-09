@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,21 +18,23 @@ import java.io.File;
  */
 public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
 
+  
+
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID marca");
         modelo.addColumn("nombre");
-
+        modelo.addColumn("linea");
         modelo.addColumn("estado");
         daoMarca productoDAO = new daoMarca();
         List<clsMarca> producto = productoDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[4];
         for (int i = 0; i < producto.size(); i++) {
-            dato[0] = Integer.toString(producto.get(i).getMarid());
+            dato[0] = Integer.toString(producto.get(i).getMarid());      
             dato[1] = producto.get(i).getMarnombre();
-
-            dato[2] = producto.get(i).getMarestado();
+            dato[2] = producto.get(i).getMarlinea();
+            dato[3] = producto.get(i).getMarestado();
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
@@ -44,15 +46,15 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         productoAConsultar.setMarid(Integer.parseInt(txtbuscado.getText()));
         productoAConsultar = productoDAO.query(productoAConsultar);
         txtNombre.setText(productoAConsultar.getMarnombre());
-        
+        txtMarca.setText(productoAConsultar.getMarlinea());
         txtPrecio.setText(productoAConsultar.getMarestado());
-
+        
     }
 
     public frmMantenimientoMarca() {
         initComponents();
         llenadoDeTablas();
-
+       
     }
 
     /**
@@ -82,6 +84,7 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         label6 = new javax.swing.JLabel();
         label7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         label4 = new javax.swing.JLabel();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
@@ -182,6 +185,7 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 100, -1));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label6.setText("Linea");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -192,6 +196,11 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
         txtNombre.setOpaque(false);
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 220, -1));
+
+        txtMarca.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtMarca.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtMarca.setOpaque(false);
+        getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, -1));
 
         label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label4.setText("Nombre Marca");
@@ -205,7 +214,7 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         daoMarca productoDAO = new daoMarca();
         clsMarca productoAEliminar = new clsMarca();
         productoAEliminar.setMarid(Integer.parseInt(txtbuscado.getText()));
-
+        
         productoDAO.delete(productoAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -213,9 +222,9 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         daoMarca productoDAO = new daoMarca();
         clsMarca productoAInsertar = new clsMarca();
-
-        productoAInsertar.setMarnombre(txtNombre.getText());
         
+        productoAInsertar.setMarnombre(txtNombre.getText());
+        productoAInsertar.setMarlinea(txtMarca.getText());
         productoAInsertar.setMarestado(txtPrecio.getText());
         productoDAO.insert(productoAInsertar);
         llenadoDeTablas();
@@ -232,18 +241,19 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
         clsMarca productoAActualizar = new clsMarca();
         productoAActualizar.setMarid(Integer.parseInt(txtbuscado.getText()));
         productoAActualizar.setMarnombre(txtNombre.getText());
-       
-        productoAActualizar.setMarestado(txtPrecio.getText());
+        productoAActualizar.setMarlinea(txtMarca.getText());
+       productoAActualizar.setMarestado(txtPrecio.getText());
         productoDAO.update(productoAActualizar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
+       
+        
         txtPrecio.setText("");
         txtbuscado.setText("");
         txtNombre.setText("");
-        
+        txtMarca.setText("");
         btnRegistrar.setEnabled(true);
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
@@ -286,6 +296,7 @@ public class frmMantenimientoMarca extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
     private javax.swing.JTable tablaVendedores;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtbuscado;

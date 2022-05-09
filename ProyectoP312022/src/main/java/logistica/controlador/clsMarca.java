@@ -50,9 +50,9 @@ public class clsMarca {
     public String toString() {
         return "tbl_marcas{" + "marid=" + marid + ", marnombre=" + marnombre + ", marlinea=" + marlinea + ", marestado=" + marestado + '}';
     }
+ 
+ 
 
-
-
-
-
+ 
+    
 }
