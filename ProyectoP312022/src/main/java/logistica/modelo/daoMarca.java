@@ -12,7 +12,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+import seguridad.modelo.clsConexion;
+import seguridad.vista.mdiGeneral;
+>>>>>>> parent of d6cb2c7 (Merge branch 'main' of https://github.com/BryanIllescas/ProyectoP3E1)
 =======
 import seguridad.modelo.clsConexion;
 import seguridad.vista.mdiGeneral;
