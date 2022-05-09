@@ -48,6 +48,10 @@ public class clsLineas {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "tbl_lineas{" + "linid=" + linid ", marid=" + marid + ", linnombre=" + linnombre + ", linstatus=" + linstatus + '}';
+=======
+        return "tbl_lineas{" + " linid = " + linid + ", linnombre=" + linnombre + ", linstatus=" + linstatus + '}';
+>>>>>>> parent of d6cb2c7 (Merge branch 'main' of https://github.com/BryanIllescas/ProyectoP3E1)
     }
  }
