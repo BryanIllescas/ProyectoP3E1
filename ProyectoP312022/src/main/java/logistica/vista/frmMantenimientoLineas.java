@@ -15,6 +15,7 @@ import java.util.ArrayList;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import logistica.modelo.clsLineas;
 =======
 >>>>>>> parent of d6cb2c7 (Merge branch 'main' of https://github.com/BryanIllescas/ProyectoP3E1)
@@ -23,6 +24,8 @@ import logistica.modelo.clsLineas;
 =======
 import logistica.modelo.clsLineas;
 >>>>>>> parent of 366edbf (Correccion de errores)
+=======
+>>>>>>> parent of d6cb2c7 (Merge branch 'main' of https://github.com/BryanIllescas/ProyectoP3E1)
 
 /**
  *
